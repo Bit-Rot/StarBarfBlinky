@@ -1,10 +1,10 @@
 #include "TwinkleEffect.h"
 #include <util/delay.h>
 
-TwinkleEffect::TwinkleEffect(PixelStrip &pixelStrip, int twinkleMode, int maxTwinkles, int minTwinkleTime, int maxTwinkleTime) :
-  myNumTwinkles(0) {
+TwinkleEffect::TwinkleEffect(PixelStrip *pixelStrip, int twinkleMode, int maxTwinkles, int minTwinkleTime, int maxTwinkleTime) 
+  : Effect(pixelStrip) {
 
-  myPixelStrip = &pixelStrip;
+  myNumTwinkles = 0;
   myMaxTwinkles = maxTwinkles;
   myMinTwinkleTime = minTwinkleTime;
   myMaxTwinkleTime = maxTwinkleTime;
@@ -312,7 +312,3 @@ void Twinkle::updateSin(unsigned long delta) {
   }
 }
 */
-
-void TwinkleEffect::show(void) {
-  myPixelStrip->show();
-}

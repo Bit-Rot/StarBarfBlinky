@@ -6,9 +6,8 @@
 
 class GradientEffect : public FrameEffect {
 public:
-	GradientEffect(PixelStrip &pixelStrip, uint32_t *colors, uint8_t numcolors, unsigned long frameDuration=100);
+	GradientEffect(PixelStrip *pixelStrip, uint32_t *colors, uint8_t numcolors, unsigned long frameDuration=100);
 	virtual void init(void);
-	virtual void show(void);
 
 private:
 	virtual void updateInternal(uint8_t frame);

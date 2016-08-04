@@ -43,8 +43,8 @@ void LightShow::loop(unsigned long newTime) {
   //Make any state updates necessary
   unsigned long delta = newTime - myLastTime;
   myEffects[myCurrentShow]->update(delta);
-  myEffects[myCurrentShow]->show();
- 
+  myStrip->show(); 
+
   // Update timestamp
   myLastTime = newTime;
 }

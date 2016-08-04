@@ -1,8 +1,8 @@
 #include "GradientEffect.h"
 #include "Effects.h"
 
-GradientEffect::GradientEffect(PixelStrip &pixelStrip, uint32_t *colors, uint8_t numColors, unsigned long frameDuration) {
-	myPixelStrip = &pixelStrip;
+GradientEffect::GradientEffect(PixelStrip *pixelStrip, uint32_t *colors, uint8_t numColors, unsigned long frameDuration)
+	: FrameEffect(pixelStrip) {
 	myColors = colors;
 	myNumColors = numColors;
 	myFrameDuration = frameDuration;
@@ -19,10 +19,6 @@ void GradientEffect::updateInternal(uint8_t frame) {
       myPixelStrip->getPixel(i)->setColor(wheel2(i+frame));
 //      myPixelStrip->getPixel(i)->setColor(wheel2(i * (myNumFrames) / myPixelStrip->getNumPixels()) + frame);
     }
-}
-
-void GradientEffect::show(void) {
-	myPixelStrip->show();
 }
 
 uint32_t GradientEffect::wheel(uint8_t pos) {

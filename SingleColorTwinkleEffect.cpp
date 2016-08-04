@@ -1,12 +1,12 @@
 #include "SingleColorTwinkleEffect.h"
 #include <util/delay.h>
 
-SingleColorTwinkleEffect::SingleColorTwinkleEffect(PixelStrip &pixelStrip, uint32_t color, int maxTwinkles, int minTwinkleTime, int maxTwinkleTime, int twinkleRate) :
-  myNumTwinkles(0) {
+SingleColorTwinkleEffect::SingleColorTwinkleEffect(PixelStrip *pixelStrip, uint32_t color, int maxTwinkles, int minTwinkleTime, int maxTwinkleTime, int twinkleRate) 
+  : Effect(pixelStrip) {
 
   myTwinkleRate = twinkleRate;
   myColor = color;
-  myPixelStrip = &pixelStrip;
+  myNumTwinkles = 0;
   myMaxTwinkles = maxTwinkles;
   myMinTwinkleTime = minTwinkleTime;
   myMaxTwinkleTime = maxTwinkleTime;
@@ -75,8 +75,4 @@ void SingleColorTwinkleEffect::update(unsigned long delta) {
       break;
     }
   }
-}
-
-void SingleColorTwinkleEffect::show(void) {
-  myPixelStrip->show();
 }

@@ -13,7 +13,7 @@ class PixelStrip {
  public:
 
   // Constructor: number of LEDs, pin number, LED type
-  PixelStrip(uint16_t ledCount, uint8_t pinNumber=6, neoPixelType type=NEO_GRB + NEO_KHZ800, uint8_t conversionMethod = CONVERSION_METHOD_NORMAL, uint8_t buttonPin = 10);
+  PixelStrip(uint16_t ledCount, uint8_t pinNumber = 6, neoPixelType type = NEO_GRB + NEO_KHZ800, uint8_t conversionMethod = CONVERSION_METHOD_NORMAL, uint8_t buttonPin = 10);
   ~PixelStrip();
 
   void begin(void);

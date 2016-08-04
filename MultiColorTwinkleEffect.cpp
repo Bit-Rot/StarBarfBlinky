@@ -1,11 +1,11 @@
 #include "MultiColorTwinkleEffect.h"
 #include <util/delay.h>
 
-MultiColorTwinkleEffect::MultiColorTwinkleEffect(PixelStrip &pixelStrip, int maxTwinkles, int minTwinkleTime, int maxTwinkleTime, int twinkleRate, uint32_t *colors, int numColors) :
-  myNumTwinkles(0) {
+MultiColorTwinkleEffect::MultiColorTwinkleEffect(PixelStrip *pixelStrip, int maxTwinkles, int minTwinkleTime, int maxTwinkleTime, int twinkleRate, uint32_t *colors, int numColors)
+  : Effect(pixelStrip) {
 
   myTwinkleRate = twinkleRate;
-  myPixelStrip = &pixelStrip;
+  myNumTwinkles = 0;
   myMaxTwinkles = maxTwinkles;
   myMinTwinkleTime = minTwinkleTime;
   myMaxTwinkleTime = maxTwinkleTime;
@@ -83,8 +83,4 @@ void MultiColorTwinkleEffect::update(unsigned long delta) {
       break;
     }
   }
-}
-
-void MultiColorTwinkleEffect::show(void) {
-  myPixelStrip->show();
 }

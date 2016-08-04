@@ -11,7 +11,7 @@ class MultiColorTwinkleEffect : public Effect{
  public:
 
   // Constructor: number of LEDs, pin number, LED type
-  MultiColorTwinkleEffect(PixelStrip &pixelStrip, int maxTwinkles = 7, int minTwinkleTime = 1000, int maxTwinkleTime = 3000, int twinkleRate = 100, uint32_t *colors = NULL, int numColors = 0);
+  MultiColorTwinkleEffect(PixelStrip *pixelStrip, int maxTwinkles = 7, int minTwinkleTime = 1000, int maxTwinkleTime = 3000, int twinkleRate = 100, uint32_t *colors = NULL, int numColors = 0);
   ~MultiColorTwinkleEffect();
 
   void init(void);
@@ -34,7 +34,6 @@ class MultiColorTwinkleEffect : public Effect{
   int myNumTwinkles;
   int myMinTwinkleTime;
   int myMaxTwinkleTime;
-  PixelStrip* myPixelStrip;
   ColorPallette *myColorPallette;
   
 };

@@ -6,7 +6,7 @@
 
 class RainbowEffect : public FrameEffect {
 public:
-	RainbowEffect(PixelStrip &pixelStrip, unsigned long);
+	RainbowEffect(PixelStrip *pixelStrip, unsigned long);
 	virtual void init(void);
 	void update(unsigned long time);
 	virtual void show(void);

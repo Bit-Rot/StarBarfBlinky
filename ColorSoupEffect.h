@@ -11,8 +11,7 @@ class ColorSoupEffect : public Effect{
  public:
 
   // Constructor: number of LEDs, pin number, LED type
-  ColorSoupEffect(PixelStrip &pixelStrip, uint32_t *colors, uint8_t numColors, int minTwinkleTime=1000, int maxTwinkleTime=3000);
-  ~ColorSoupEffect();
+  ColorSoupEffect(PixelStrip *pixelStrip, uint32_t *colors, uint8_t numColors, int minTwinkleTime=1000, int maxTwinkleTime=3000);
 
   void init(void);
   void update(unsigned long delta);
@@ -29,7 +28,6 @@ class ColorSoupEffect : public Effect{
   int myNumTwinkles;
   int myMinTwinkleTime;
   int myMaxTwinkleTime;
-  PixelStrip* myPixelStrip;
   ColorPallette *myColorPallette;
   
 };

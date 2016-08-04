@@ -2,19 +2,14 @@
 #include "Effects.h"
 #include <util/delay.h>
 
-ColorSoupEffect::ColorSoupEffect(PixelStrip &pixelStrip, uint32_t *colors, uint8_t numColors, int minTwinkleTime, int maxTwinkleTime) :
-  myNumTwinkles(0) {
-
+ColorSoupEffect::ColorSoupEffect(PixelStrip *pixelStrip, uint32_t *colors, uint8_t numColors, int minTwinkleTime, int maxTwinkleTime)
+  : Effect(pixelStrip) {
   myColorPallette = new ColorPallette();
   myColorPallette->setColors(colors);
   myColorPallette->setNumColors(numColors);
-  myPixelStrip = &pixelStrip;
+  myNumTwinkles = 0;
   myMinTwinkleTime = minTwinkleTime;
   myMaxTwinkleTime = maxTwinkleTime;
-}
-
-ColorSoupEffect::~ColorSoupEffect() {
-  delete myColorPallette;
 }
 
 void ColorSoupEffect::init(void) {
@@ -137,8 +132,4 @@ void ColorSoupEffect::update(unsigned long delta) {
       /**/
     }
   }
-}
-
-void ColorSoupEffect::show(void) {
-  myPixelStrip->show();
 }

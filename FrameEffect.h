@@ -6,16 +6,14 @@
 
 class FrameEffect : public Effect {
 public:
-	FrameEffect() {};
-	virtual void init(void);
+	FrameEffect(PixelStrip*);
+	virtual void init(void) = 0;
 	virtual void update(unsigned long time);
-	virtual void show(void);
 
 private:
-	virtual void updateInternal(uint8_t frame);
+	virtual void updateInternal(uint8_t frame) = 0;
 
 protected:
-	PixelStrip* myPixelStrip;
 	unsigned long myFrameDuration;
 	uint8_t myNumFrames;
 	uint8_t myFrame;

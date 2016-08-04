@@ -13,7 +13,7 @@ class TwinkleEffect : public Effect {
  public:
 
   // Constructor: number of LEDs, pin number, LED type
-  TwinkleEffect(PixelStrip &pixelStrip, int twinkleMode=TWINKLE_MODE_LINEAR, int maxTwinkles=7, int minTwinkleTime=1000, int maxTwinkleTime=3000);
+  TwinkleEffect(PixelStrip *pixelStrip, int twinkleMode=TWINKLE_MODE_LINEAR, int maxTwinkles=7, int minTwinkleTime=1000, int maxTwinkleTime=3000);
   ~TwinkleEffect();
 
   void init(void);
@@ -43,7 +43,6 @@ class TwinkleEffect : public Effect {
   int myMaxTwinkleTime;
   void updateLinear(unsigned long delta);
   void updateSin(unsigned long delta);
-  PixelStrip* myPixelStrip;
   int *myColorPallette;
   int myColorPalletteLength;
 
