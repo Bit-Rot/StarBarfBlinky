@@ -1,5 +1,5 @@
 #include "ColorSoupEffect.h"
-#include "Effects.h"
+#include "EffectUtils.h"
 #include <util/delay.h>
 
 ColorSoupEffect::ColorSoupEffect(PixelStrip *pixelStrip, uint32_t *colors, uint8_t numColors, int minTwinkleTime, int maxTwinkleTime)
@@ -111,7 +111,7 @@ void ColorSoupEffect::update(unsigned long delta) {
       /**/
 
       /**/
-      Effects::colorBlend(pixel->getInitialColor(), pixel->getDestinationColor(), pixel->getTimeInState() / pixel->getTransitionDuration());
+      EffectUtils::colorBlend(pixel->getInitialColor(), pixel->getDestinationColor(), pixel->getTimeInState() / pixel->getTransitionDuration());
       /**/
 
     } else {

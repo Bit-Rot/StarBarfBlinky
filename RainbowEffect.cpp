@@ -8,7 +8,7 @@ RainbowEffect::RainbowEffect(PixelStrip *pixelStrip, unsigned long frameDuration
 }
 
 void RainbowEffect::init(void) {
-	Effects::clear(*myPixelStrip);
+	clear();
 }
 
 void RainbowEffect::updateInternal(uint8_t frame) {

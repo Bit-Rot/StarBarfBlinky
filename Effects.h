@@ -9,10 +9,6 @@ class Effects {
 
   Effects(void);
   ~Effects() {};
-  static void clear(PixelStrip &pixelStrip);
-  static void colorWipe(PixelStrip &pixelStrip, uint32_t c, uint8_t wait);
-  static void colorShoot(PixelStrip &pixelStrip, uint32_t c, uint8_t width, boolean forward, uint8_t wait);
-  static void patternShoot(PixelStrip &pixelStrip, uint32_t *pattern, uint8_t patternLength, boolean forward, uint8_t wait);
   static void rainbow(PixelStrip &pixelStrip, uint8_t wait);
   static void rainbowCycle(PixelStrip &pixelStrip, uint8_t wait);
   static void theaterChase(PixelStrip &pixelStrip, uint32_t c, uint8_t wait);
