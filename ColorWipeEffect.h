@@ -14,7 +14,7 @@ public:
 	 * color - the color to wipe with
 	 * wait - the delay between activating one pixel and the next
 	 */
-	ColorWipeEffect(PixelStrip *pixelStrip, uint32_t color, uint8_t wait);
+	ColorWipeEffect(PixelStrip *pixelStrip, uint32_t color, uint8_t wait = 50);
 	void init(void);
 	void update(unsigned long delta);
 

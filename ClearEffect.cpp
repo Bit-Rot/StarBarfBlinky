@@ -1,9 +1,9 @@
 #include "ClearEffect.h"
 
-void ClearEffect::init() {
-	clear();
+ClearEffect::ClearEffect(PixelStrip *pixelStrip)
+	: Effect(pixelStrip) {
 }
 
-void ClearEffect::update(unsigned long delta) {
-
+void ClearEffect::init() {
+	clear();
 }

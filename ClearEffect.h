@@ -11,8 +11,9 @@
  */
 class ClearEffect : public Effect {
 public:
-	void init(void);
-	void update(unsigned long delta);
+	ClearEffect(PixelStrip *pixelStrip);
+	void init();
+	void update(unsigned long delta) {};
 };
 
 #endif //EFFECT_H
