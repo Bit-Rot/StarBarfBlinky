@@ -5,7 +5,7 @@ PatternShootEffect::PatternShootEffect(PixelStrip *pixelStrip, uint32_t *pattern
   myPattern = pattern;
   myPatternLength = patternLength;
 	myWaitTime = wait;
-  myForward = myForward;
+  myForward = forward;
 }
 
 void PatternShootEffect::init() {
@@ -23,6 +23,7 @@ void PatternShootEffect::update(unsigned long delta) {
   while (i< myPixelStrip->getNumPixels()) {
     clear();
     for (int j=0; j < myPatternLength; j++) {
+      //TODO: Pattern shows up backwards - fix
       myPixelStrip->getPixel((i+j) % myPixelStrip->getNumPixels())->setColor(myPattern[j]);
     }
     myPixelStrip->show();

@@ -5,7 +5,7 @@
 
 class Effect {
 public:
-	Effect(PixelStrip*);
+	Effect(PixelStrip *pixelStrip);
 	virtual void init(void) = 0;
 	virtual void update(unsigned long delta) = 0;
 

@@ -4,7 +4,7 @@ ColorShootEffect::ColorShootEffect(PixelStrip* pixelStrip, uint32_t color, uint8
 	: Effect(pixelStrip) {
 	myColor = color;
 	myWaitTime = wait;
-  myForward = myForward;
+  myForward = forward;
   myWidth = width;
 }
 

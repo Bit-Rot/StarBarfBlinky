@@ -1,7 +1,7 @@
 #include "Effect.h"
 
 Effect::Effect(PixelStrip *pixelStrip) {
-	//myPixelStrip = pixelStrip;
+	myPixelStrip = pixelStrip;
 }
 
 void Effect::clear() {

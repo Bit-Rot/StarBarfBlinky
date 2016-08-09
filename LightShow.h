@@ -7,7 +7,7 @@
 class LightShow {
 public:
 
-  LightShow(PixelStrip *strip, uint8_t maxNumEffects);
+  LightShow(PixelStrip *pixelStrip, uint8_t maxNumEffects);
   ~LightShow() {};
 
   void setup();

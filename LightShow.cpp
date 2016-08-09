@@ -1,9 +1,6 @@
 #include "LightShow.h"
 
-// hack
-#define BUTTON_PIN    10
-
-LightShow::LightShow(PixelStrip *strip, uint8_t maxNumEffects) {
+LightShow::LightShow(PixelStrip *pixelStrip, uint8_t maxNumEffects) {
 
 	myMaxNumEffects = maxNumEffects;
 	myEffects = new Effect*[myMaxNumEffects];
@@ -11,29 +8,36 @@ LightShow::LightShow(PixelStrip *strip, uint8_t maxNumEffects) {
 	myLastTime = 0;
 	myCurrentShow = 0;
 	myShowType = 0;
-	myStrip = strip;
+	myStrip = pixelStrip;
 }
 
 void LightShow::setup() {
-  pinMode(BUTTON_PIN, INPUT_PULLUP);
+  pinMode(myStrip->getButtonPin(), INPUT_PULLUP);
   myStrip->begin();
   myStrip->show();
-  myEffects[0]->init();
+
+  if (myNumEffects > 0) {
+    myEffects[0]->init();
+  }
 }
 
 void LightShow::loop(unsigned long newTime) {
+  if (myNumEffects < 1) {
+    return;
+  }
+
   // Get current button state.
-  bool state = digitalRead(BUTTON_PIN);
+  bool state = digitalRead(myStrip->getButtonPin());
 
   // Check if state changed from high to low (button press).
   if (state == LOW) {
     // Short delay to debounce button.
     delay(500);
     // Check if button is still low after debounce.
-    state = digitalRead(BUTTON_PIN);
+    state = digitalRead(myStrip->getButtonPin());
     if (state == LOW) {
       myCurrentShow++;
-      if (myCurrentShow > myNumEffects) {
+      if (myCurrentShow >= myNumEffects) {
         myCurrentShow = 0;
       }
       myEffects[myCurrentShow]->init();
@@ -47,10 +51,6 @@ void LightShow::loop(unsigned long newTime) {
 
   // Update timestamp
   myLastTime = newTime;
-}
-
-void LightShow::startShow(int i) {
-	myEffects[i]->init();
 }
 
 void LightShow::addEffect(Effect *effect) {
