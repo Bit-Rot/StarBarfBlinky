@@ -15,14 +15,15 @@ public:
 	 * wait - the delay between activating one pixel and the next
 	 * forward - whether to shoot the pixels forward or backward
 	 */
-	PatternShootEffect(PixelStrip *pixelStrip, uint32_t *pattern, uint8_t patternLength, boolean forward = true, uint8_t wait = 50);
+	PatternShootEffect(PixelStrip *pixelStrip, uint32_t *pattern, uint8_t patternLength, uint32_t duration = 1000, boolean forward = true);
 	void init(void);
 	void update(unsigned long delta);
 
 private:
 	uint32_t *myPattern;
 	uint8_t myPatternLength;
-	uint8_t myWaitTime;
+	uint32_t myDuration;
+	uint32_t myCurrentTime;
 	boolean myForward;
 };
 

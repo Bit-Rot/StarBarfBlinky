@@ -10,12 +10,13 @@
  */
 class TheaterChaseEffect : public Effect {
 public:
-	TheaterChaseEffect(PixelStrip *pixelStrip, uint32_t color, uint8_t wait = 50);
+	TheaterChaseEffect(PixelStrip *pixelStrip, uint32_t color, uint32_t uint32_t = 100);
 	void init();
 	void update(unsigned long time);
 
 private:
-	uint8_t myWaitTime;
+	uint32_t myDuration;
+	uint32_t myCurrentTime;
 	uint32_t myColor;
 };
 

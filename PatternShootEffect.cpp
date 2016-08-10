@@ -1,10 +1,11 @@
 #include "PatternShootEffect.h"
 
-PatternShootEffect::PatternShootEffect(PixelStrip *pixelStrip, uint32_t *pattern, uint8_t patternLength, boolean forward, uint8_t wait)
+PatternShootEffect::PatternShootEffect(PixelStrip *pixelStrip, uint32_t *pattern, uint8_t patternLength, uint32_t duration, boolean forward)
 	: Effect(pixelStrip) {
   myPattern = pattern;
   myPatternLength = patternLength;
-	myWaitTime = wait;
+	myDuration = duration;
+  myCurrentTime = 0;
   myForward = forward;
 }
 
@@ -12,23 +13,17 @@ void PatternShootEffect::init() {
 	clear();
 }
 
-/*
- * Note, this is a really shitty implementation because we don't release
- * flow of logic between frames.  We should be able to easily improve this
- * by setting a total animation time on the effect and lerping the wipe
- * across the length of the strip over that duration based on the delta.
- */
 void PatternShootEffect::update(unsigned long delta) {
-  int i = myForward? 0 : myPixelStrip->getNumPixels();
-  while (i< myPixelStrip->getNumPixels()) {
-    clear();
-    for (int j=0; j < myPatternLength; j++) {
-      //TODO: Pattern shows up backwards - fix
-      myPixelStrip->getPixel((i+j) % myPixelStrip->getNumPixels())->setColor(myPattern[j]);
-    }
-    myPixelStrip->show();
-    delay(myWaitTime);
+  myCurrentTime = (myCurrentTime + delta) % myDuration;
+  double percent = (double)myCurrentTime / (double)myDuration;
+  uint8_t position = (uint8_t)(percent * (myPixelStrip->getNumPixels() - 1));
+  if (!myForward) {
+    position = myPixelStrip->getNumPixels() - position - 1;
+  }
 
-    i = myForward? i+1 : i-1;
+  clear();
+  for (int j=0; j < myPatternLength; j++) {
+    //TODO: Pattern shows up backwards - fix
+    myPixelStrip->getPixel((position+j) % myPixelStrip->getNumPixels())->setColor(myPattern[j]);
   }
 }

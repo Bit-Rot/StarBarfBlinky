@@ -1,27 +1,27 @@
 #include "ColorWipeEffect.h"
 
-ColorWipeEffect::ColorWipeEffect(PixelStrip* pixelStrip, uint32_t color, uint8_t wait)
+ColorWipeEffect::ColorWipeEffect(PixelStrip* pixelStrip, uint32_t color, uint32_t duration)
 	: Effect(pixelStrip) {
 	myColor = color;
-	myWaitTime = wait;
+  myDuration = duration;
+  myCurrentTime = 0;
 }
 
 void ColorWipeEffect::init() {
 	clear();
 }
 
-/*
- * Note, this is a really shitty implementation because we don't release
- * flow of logic between frames.  We should be able to easily improve this
- * by setting a total animation time on the effect and lerping the wipe
- * across the length of the strip over that duration based on the delta.
- */
 void ColorWipeEffect::update(unsigned long delta) {
-  for(int i=0; i < myPixelStrip->getNumPixels(); i++) {
-    myPixelStrip->getPixel(i)->setColor(myColor);
-    myPixelStrip->getPixel(i)->setBrightness(255);
-    myPixelStrip->show();
-    delay(myWaitTime);
+  uint32_t myPreviousTime = myCurrentTime;
+  myCurrentTime = (myCurrentTime + delta) % myDuration;
+  double percent = (double)myCurrentTime / (double)myDuration;
+  uint8_t position = (uint8_t)(percent * (myPixelStrip->getNumPixels() - 1));
+
+  if (myPreviousTime > myCurrentTime) {
+    clear();
   }
-  clear();
+
+  myPixelStrip->getPixel(position)->setColor(myColor);
+  myPixelStrip->getPixel(position)->setBrightness(255);
+  myPixelStrip->show();
 }

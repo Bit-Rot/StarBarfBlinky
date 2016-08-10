@@ -1,9 +1,10 @@
 #include "TheaterChaseEffect.h"
 #include "EffectUtils.h"
 
-TheaterChaseEffect::TheaterChaseEffect(PixelStrip *pixelStrip, uint32_t color, uint8_t wait)
+TheaterChaseEffect::TheaterChaseEffect(PixelStrip *pixelStrip, uint32_t color, uint32_t duration)
 	: Effect(pixelStrip) {
-	myWaitTime = wait;
+	myDuration = duration;
+  myCurrentTime = 0;
   myColor = color;
 }
 
@@ -12,21 +13,12 @@ void TheaterChaseEffect::init(void) {
 }
 
 void TheaterChaseEffect::update(unsigned long delta) {
+  myCurrentTime = (myCurrentTime + delta) % myDuration;
+  double percent = (double)myCurrentTime / (double)myDuration;
+  uint8_t position = (uint8_t)(percent * (3));
 
-  for (int j = 0; j < 10; j++) {  //do 10 cycles of chasing
-    for (int q = 0; q < 3; q++) {
-      for (int i = 0; i < myPixelStrip->getNumPixels(); i = i + 3) {
-        myPixelStrip->getPixel(i+q)->setColor(myColor);    //turn every third pixel on
-        myPixelStrip->getPixel(i+q)->setBrightness(255);
-      }
-      myPixelStrip->show();
-
-      delay(myWaitTime);
-
-      for (int i=0; i < myPixelStrip->getNumPixels(); i = i + 3) {
-        myPixelStrip->getPixel(i+q)->setColor(0);        //turn every third pixel off
-        myPixelStrip->getPixel(i+q)->setBrightness(255);
-      }
-    }
+  clear();
+  for (int i = 0; i < myPixelStrip->getNumPixels(); i = i + 3) {
+    myPixelStrip->getPixel(i+position)->setColor(myColor);    //turn every third pixel on
   }
 }

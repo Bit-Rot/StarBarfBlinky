@@ -16,13 +16,14 @@ public:
 	 * forward - whether to shoot the color forward or backward
 	 * width - the # of pixels to shoot
 	 */
-	ColorShootEffect(PixelStrip *pixelStrip, uint32_t color, uint8_t wait = 50, boolean forward = true, uint8_t width = 1);
+	ColorShootEffect(PixelStrip *pixelStrip, uint32_t color, uint32_t duration = 1000, boolean forward = true, uint8_t width = 1);
 	void init(void);
 	void update(unsigned long delta);
 
 private:
 	uint32_t myColor;
-	uint8_t myWaitTime;
+	uint32_t myDuration;	
+	uint32_t myCurrentTime;
 	boolean myForward;
 	uint8_t myWidth;
 };
