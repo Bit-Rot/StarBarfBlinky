@@ -24,5 +24,4 @@ void ColorWipeEffect::update(unsigned long delta) {
 
   myPixelStrip->getPixel(position)->setColor(myColor);
   myPixelStrip->getPixel(position)->setBrightness(255);
-  myPixelStrip->show();
 }
