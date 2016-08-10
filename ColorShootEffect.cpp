@@ -11,6 +11,7 @@ ColorShootEffect::ColorShootEffect(PixelStrip* pixelStrip, uint32_t color, uint3
 
 void ColorShootEffect::init() {
 	clear();
+  myCurrentTime = 0;
 }
 
 void ColorShootEffect::update(unsigned long delta) {

@@ -10,6 +10,7 @@ TheaterChaseEffect::TheaterChaseEffect(PixelStrip *pixelStrip, uint32_t color, u
 
 void TheaterChaseEffect::init(void) {
 	clear();
+  myCurrentTime = 0;
 }
 
 void TheaterChaseEffect::update(unsigned long delta) {

@@ -13,7 +13,7 @@
  */
 class RainbowEffect : public Effect {
 public:
-	RainbowEffect(PixelStrip *pixelStrip, uint8_t mode = RAINBOW_EFFECT_MODE_NORMAL, uint32_t duration = 1000);
+	RainbowEffect(PixelStrip *pixelStrip, uint8_t mode = RAINBOW_EFFECT_MODE_NORMAL, uint32_t duration = 10000);
 	void init(void);
 	void update(unsigned long time);
 

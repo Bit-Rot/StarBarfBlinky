@@ -25,6 +25,7 @@ private:
 	uint8_t myCurrentShow;
 	uint8_t myShowType;
 	uint8_t myMaxNumEffects;
+	uint32_t myButtonDownDuration;
 	PixelStrip* myStrip;
 
 	void startShow(int i);

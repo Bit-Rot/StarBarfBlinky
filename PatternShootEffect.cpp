@@ -11,6 +11,7 @@ PatternShootEffect::PatternShootEffect(PixelStrip *pixelStrip, uint32_t *pattern
 
 void PatternShootEffect::init() {
 	clear();
+  myCurrentTime = 0;
 }
 
 void PatternShootEffect::update(unsigned long delta) {

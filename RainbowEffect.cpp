@@ -9,6 +9,7 @@ RainbowEffect::RainbowEffect(PixelStrip *pixelStrip, uint8_t mode, uint32_t dura
 
 void RainbowEffect::init(void) {
 	clear();
+  myCurrentTime = 0;
 }
 
 void RainbowEffect::update(unsigned long delta) {

@@ -9,6 +9,7 @@ ColorWipeEffect::ColorWipeEffect(PixelStrip* pixelStrip, uint32_t color, uint32_
 
 void ColorWipeEffect::init() {
 	clear();
+  myCurrentTime = 0;
 }
 
 void ColorWipeEffect::update(unsigned long delta) {
