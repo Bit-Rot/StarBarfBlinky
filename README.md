@@ -70,7 +70,7 @@ A light show is a collection of effects that you can cycle through!  Maybe you w
 
 Everything that shows up on your blinky is an effect!  Want some rainbow stuff?  There's a rainbow effect for that!  Want some twinkly stuff?  There's a twinkle effect for that!  Want more effects?  Make a pull request :)
 
-#### Step 7. Add Effects
+### Step 7. Add Effects
 
 To add effects to your lightshow, you need to do two things:
 
