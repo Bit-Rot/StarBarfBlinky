@@ -17,7 +17,6 @@
 
 #define PIXEL_PIN     13
 #define PIXEL_COUNT   60
-#define NUM_MODES     7
 #define MAX_NUM_EFFECTS 16
 
 PixelStrip *strip = new PixelStrip(PIXEL_COUNT, PIXEL_PIN, NEO_GRB + NEO_KHZ800, CONVERSION_METHOD_NORMAL);
