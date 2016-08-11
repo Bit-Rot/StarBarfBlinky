@@ -46,6 +46,8 @@ void PixelStrip::show() {
   myStrip->show();
 }
 
+
+
 Pixel *PixelStrip::getPixel(uint16_t pos) const{
   if (pos < myStrip->numPixels()) {
     return &myPixels[pos];
