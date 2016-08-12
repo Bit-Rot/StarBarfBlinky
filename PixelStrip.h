@@ -26,6 +26,7 @@ class PixelStrip {
   uint8_t getGreen(uint32_t color);
   uint8_t getBlue(uint32_t color);
   void setConversionMethod(uint8_t conversionMethod) {myConversionMethod = conversionMethod;};
+  void setMasterBrightness(uint8_t masterBrightness);
   uint8_t getButtonPin();
 
  private:

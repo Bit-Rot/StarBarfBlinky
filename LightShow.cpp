@@ -2,6 +2,10 @@
 
 #define LONG_PRESS_DURATION 750
 #define SHORT_PRESS_DURATION 50
+#define BRIGHTNESS_1 255
+#define BRIGHTNESS_2 150
+#define BRIGHTNESS_3 50
+#define BRIGHTNESS_4 20
 
 LightShow::LightShow(PixelStrip *pixelStrip, uint8_t maxNumEffects) {
 
@@ -13,6 +17,8 @@ LightShow::LightShow(PixelStrip *pixelStrip, uint8_t maxNumEffects) {
 	myShowType = 0;
 	myStrip = pixelStrip;
   myButtonDownDuration = 0;
+  myMasterBrightness = BRIGHTNESS_1;
+  myJustChangedEffects = false;
 }
 
 void LightShow::setup() {
@@ -44,9 +50,14 @@ void LightShow::loop(unsigned long newTime) {
     if (myButtonDownDuration > LONG_PRESS_DURATION) {
       myCurrentShow = ++myCurrentShow % myNumEffects;
       myEffects[myCurrentShow]->init();
+      myJustChangedEffects = true;
       myButtonDownDuration = 0;
     }
   } else {
+    if (!myJustChangedEffects) {
+      cycleBrightness();
+    }
+    myJustChangedEffects = false;
     myButtonDownDuration = 0;
   }
 
@@ -56,6 +67,25 @@ void LightShow::loop(unsigned long newTime) {
 
   // Update timestamp
   myLastTime = newTime;
+}
+
+void LightShow::cycleBrightness() {
+  if (myButtonDownDuration > SHORT_PRESS_DURATION) {
+    switch (myMasterBrightness) {
+      case BRIGHTNESS_1:
+        myMasterBrightness = BRIGHTNESS_2;
+        break;
+      case BRIGHTNESS_2:
+        myMasterBrightness = BRIGHTNESS_3;
+        break;
+      case BRIGHTNESS_3:
+        myMasterBrightness = BRIGHTNESS_4;
+        break;
+      default:
+        myMasterBrightness = BRIGHTNESS_1;
+    }
+    myStrip->setMasterBrightness(myMasterBrightness);
+  }
 }
 
 void LightShow::addEffect(Effect *effect) {

@@ -27,8 +27,10 @@ private:
 	uint8_t myMaxNumEffects;
 	uint32_t myButtonDownDuration;
 	PixelStrip* myStrip;
-
+	uint8_t myMasterBrightness;
+	boolean myJustChangedEffects;
 	void startShow(int i);
+	void cycleBrightness();
 
 };
 

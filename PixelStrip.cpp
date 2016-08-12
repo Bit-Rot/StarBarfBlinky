@@ -46,8 +46,6 @@ void PixelStrip::show() {
   myStrip->show();
 }
 
-
-
 Pixel *PixelStrip::getPixel(uint16_t pos) const{
   if (pos < myStrip->numPixels()) {
     return &myPixels[pos];
@@ -82,6 +80,12 @@ uint16_t PixelStrip::getNumPixels(void) const {
       break;
   }
   return myStrip->numPixels();
+}
+
+void PixelStrip::setMasterBrightness(uint8_t masterBrightness) {
+  for (int i = 0; i < getNumPixels(); ++i) {
+    myPixels[i].setMasterBrightness(masterBrightness);
+  }
 }
 
 uint8_t PixelStrip::getButtonPin() {

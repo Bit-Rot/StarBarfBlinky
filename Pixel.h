@@ -11,6 +11,7 @@ class Pixel {
   Pixel(void);
   ~Pixel() {};
 
+  uint8_t getBrightness(void);
   void setBrightness(uint8_t brightness) {myBrightness = brightness;};
   uint8_t getInitialBrightness(void) {return myInitialBrightness;};
   void setInitialBrightness(uint8_t initialBrightness) {myInitialBrightness = initialBrightness;};
