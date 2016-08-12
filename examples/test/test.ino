@@ -9,6 +9,7 @@
 #include <RainbowEffect.h>
 #include <ClearEffect.h>
 #include <TheaterChaseEffect.h>
+#include <EffectChainEffect.h>
 
 /*
 #include <ColorSoupEffect.h>
@@ -19,7 +20,7 @@
 #define PIXEL_COUNT   60
 #define MAX_NUM_EFFECTS 16
 
-PixelStrip *strip = new PixelStrip(PIXEL_COUNT, PIXEL_PIN, NEO_GRB + NEO_KHZ800, CONVERSION_METHOD_NORMAL);
+PixelStrip *strip = new PixelStrip(PIXEL_COUNT, PIXEL_PIN, NEO_RGB + NEO_KHZ800, CONVERSION_METHOD_NORMAL);
 
 uint32_t testColors[] = {0xff0000, 0x00ff00, 0x0000ff};
 uint8_t numTestColors = 3;
@@ -31,6 +32,8 @@ uint32_t americaShoot[] = {0xFF0000, 0xFF0000, 0xFF0000, 0xFFFFFF, 0xFFFFFF, 0xF
 uint8_t americaShootLength = 9;
 
 ColorShootEffect colorShoot1 = ColorShootEffect(strip, 0xFF0000);
+ColorShootEffect colorShoot2 = ColorShootEffect(strip, 0x00FF00);
+ColorShootEffect colorShoot3 = ColorShootEffect(strip, 0x0000FF);
 ColorWipeEffect colorWipe1 = ColorWipeEffect(strip, 0xFF0000);
 PatternShootEffect patternShoot1 = PatternShootEffect(strip, americaShoot, americaShootLength);
 RainbowEffect rainbow1 = RainbowEffect(strip);
@@ -38,23 +41,31 @@ RainbowEffect rainbowCycle1 = RainbowEffect(strip, RAINBOW_EFFECT_MODE_CYCLE);
 TheaterChaseEffect theaterChase1 = TheaterChaseEffect(strip, 0xffff33);
 ClearEffect clearEffect = ClearEffect(strip);
 
+
 SingleColorTwinkleEffect singleTwinkle1 = SingleColorTwinkleEffect(
   strip, //the strip object
   0xffffff, //color
-  4, //max # twinkles
+  15, //max # twinkles
   500, //min twinkle time (ms)
   2000, //max twinkle time (ms)
   60); //twinkle rate
 MultiColorTwinkleEffect multiTwinkle1 = MultiColorTwinkleEffect(
   strip, //the strip object
-  6, //max # twinkles
+  15, //max # twinkles
   500, //min twinkle time (ms)
   2000, //max twinkle time (ms)
   40,
   purpleColors,
   numPurpleColors); //twinkle rate
+
 /*
-*/
+  Effect** effectChainEffects = new Effect*[3];
+  effectChainEffects[0] = &colorShoot1;
+  effectChainEffects[1] = &colorShoot2;
+  effectChainEffects[2] = &colorShoot3;
+  */
+  Effect** effectChainEffects = new Effect*[3] {&colorShoot1, &colorShoot2, &colorShoot3};
+  EffectChainEffect effectChainEffect1 = EffectChainEffect(strip, effectChainEffects, 3, 1000);
 
 //NOT READY YET :(
 /* 
@@ -75,8 +86,10 @@ LightShow* lightShow = NULL;
 
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(PIXEL_COUNT, PIXEL_PIN, NEO_GRB + NEO_KHZ800);
 void setup() {
+  
 
   lightShow = new LightShow(strip, MAX_NUM_EFFECTS);
+  lightShow->addEffect(&effectChainEffect1);
   lightShow->addEffect(&singleTwinkle1);
   lightShow->addEffect(&multiTwinkle1);
   lightShow->addEffect(&colorShoot1);

@@ -4,6 +4,7 @@ EffectChainEffect::EffectChainEffect(PixelStrip* pixelStrip, Effect** effects, u
   : Effect(pixelStrip) {
   myEffects = effects;
   myNumEffects = numEffects;
+  myDuration = duration;
   myCurrentTime = 0;
   myCurrentEffect = 0;
 }
