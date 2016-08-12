@@ -8,6 +8,7 @@ ColorWipeEffect::ColorWipeEffect(PixelStrip* pixelStrip, uint32_t color, uint32_
 }
 
 void ColorWipeEffect::init() {
+  Effect::init();
 	clear();
   myCurrentTime = 0;
 }

@@ -10,6 +10,7 @@ ColorShootEffect::ColorShootEffect(PixelStrip* pixelStrip, uint32_t color, uint3
 }
 
 void ColorShootEffect::init() {
+  Effect::init();
 	clear();
   myCurrentTime = 0;
 }

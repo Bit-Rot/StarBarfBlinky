@@ -10,6 +10,7 @@ GradientEffect::GradientEffect(PixelStrip *pixelStrip, uint32_t *colors, uint8_t
 }
 
 void GradientEffect::init(void) {
+  Effect::init();
 	clear();
 }
 

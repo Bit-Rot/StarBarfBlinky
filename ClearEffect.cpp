@@ -5,5 +5,6 @@ ClearEffect::ClearEffect(PixelStrip *pixelStrip)
 }
 
 void ClearEffect::init() {
+  Effect::init();
 	clear();
 }
