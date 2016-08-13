@@ -1,6 +1,8 @@
 #ifndef COLORS_H
 #define COLORS_H
 
+//List generated from: http://cloford.com/resources/colours/500col.htm
+
 #define COLOR_INDIAN_RED 0xB0171F
 #define COLOR_CRIMSON 0xDC143C
 #define COLOR_LIGHTPINK 0xFFB6C1
