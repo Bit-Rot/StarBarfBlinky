@@ -10,6 +10,7 @@ PatternShootEffect::PatternShootEffect(PixelStrip *pixelStrip, uint32_t *pattern
 }
 
 void PatternShootEffect::init() {
+  Effect::init();
 	clear();
   myCurrentTime = 0;
 }

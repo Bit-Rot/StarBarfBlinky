@@ -9,6 +9,7 @@ TheaterChaseEffect::TheaterChaseEffect(PixelStrip *pixelStrip, uint32_t color, u
 }
 
 void TheaterChaseEffect::init(void) {
+  Effect::init();
 	clear();
   myCurrentTime = 0;
 }

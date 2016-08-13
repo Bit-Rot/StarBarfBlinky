@@ -19,6 +19,7 @@ MultiColorTwinkleEffect::~MultiColorTwinkleEffect() {
 }
 
 void MultiColorTwinkleEffect::init(void) {
+  Effect::init();
   myNumTwinkles = 0;
   for (int i=0; i < myPixelStrip->getNumPixels(); ++i) {
     Pixel *pixel = myPixelStrip->getPixel(i);

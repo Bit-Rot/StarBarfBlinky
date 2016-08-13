@@ -13,14 +13,15 @@ ColorSoupEffect::ColorSoupEffect(PixelStrip *pixelStrip, uint32_t *colors, uint8
 }
 
 void ColorSoupEffect::init(void) {
+  Effect::init();
   myNumTwinkles = 0;
   for (int i=0; i < myPixelStrip->getNumPixels(); ++i) {
     Pixel *pixel = myPixelStrip->getPixel(i);
     /*
     pixel->setBrightness(255);
     pixel->setColor(0xffffff);
-    pixel->transition(255, 
-      myColorPallette->getRandomColor(), 
+    pixel->transition(255,
+      myColorPallette->getRandomColor(),
       (rand() % (myMaxTwinkleTime - myMinTwinkleTime)) + myMinTwinkleTime);
     pixel->changeState(TWINKLE_IN);
     /**/
@@ -125,8 +126,8 @@ void ColorSoupEffect::update(unsigned long delta) {
 
       /**/
       pixel->changeState(TWINKLE_IN);
-      pixel->transition(255, 
-        myColorPallette->getRandomColor(), 
+      pixel->transition(255,
+        myColorPallette->getRandomColor(),
         20000);
 //        (rand() % (myMaxTwinkleTime - myMinTwinkleTime)) + myMinTwinkleTime);
       /**/

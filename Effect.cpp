@@ -2,6 +2,15 @@
 
 Effect::Effect(PixelStrip *pixelStrip) {
 	myPixelStrip = pixelStrip;
+  myConversionMethod = CONVERSION_METHOD_NORMAL;
+}
+
+void Effect::setConversionMethod(uint8_t conversionMethod) {
+  myConversionMethod = conversionMethod;
+}
+
+void Effect::init() {
+  myPixelStrip->setConversionMethod(myConversionMethod);
 }
 
 void Effect::clear() {
