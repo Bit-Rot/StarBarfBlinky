@@ -1,8 +1,8 @@
-#include "Effect.h"
+#include "Effect.h"	
 
 Effect::Effect(PixelStrip *pixelStrip) {
 	myPixelStrip = pixelStrip;
-  myConversionMethod = CONVERSION_METHOD_NORMAL;
+  myConversionMethod = CONVERSION_METHOD_NONE;
 }
 
 void Effect::setConversionMethod(uint8_t conversionMethod) {
@@ -10,7 +10,9 @@ void Effect::setConversionMethod(uint8_t conversionMethod) {
 }
 
 void Effect::init() {
-  myPixelStrip->setConversionMethod(myConversionMethod);
+	if (myConversionMethod != CONVERSION_METHOD_NONE) {
+	  myPixelStrip->setConversionMethod(myConversionMethod);
+	}
 }
 
 void Effect::clear() {
